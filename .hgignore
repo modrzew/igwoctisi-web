@@ -1,2 +1,4 @@
 syntax: glob
 nbproject/*
+application/logs/*
+application/cache/*
