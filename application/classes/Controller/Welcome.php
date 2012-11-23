@@ -4,6 +4,7 @@ class Controller_Welcome extends Controller {
 
 	public function action_index()
 	{
+		$u = ORM::factory('user')->find_all();
 		$this->response->body('hello, world!');
 	}
 
