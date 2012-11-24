@@ -7,12 +7,11 @@ class Controller_Main extends Controller_Template {
 	{
 		if(Auth::instance()->logged_in())
 		{
-			
+			$this->template->content = View::factory('partials/mainLogged');
 		}
 		else
 		{
-			$this->template->content = 'Not logged in';
+			$this->template->content = View::factory('partials/mainNotLogged');
 		}
 	}
-
 } // End Main
