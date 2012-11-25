@@ -7,6 +7,7 @@ class Controller_Main extends Controller_Template {
 	{
 		if(Auth::instance()->logged_in())
 		{
+			$user = Auth::instance()->get_user();
 			$this->template->content = View::factory('partials/mainLogged');
 		}
 		else
@@ -70,7 +71,7 @@ class Controller_Main extends Controller_Template {
 			$post = $this->request->post();
 			if(Auth::instance()->login($post['username'], $post['password']))
 			{
-				$this->redirect('main/index');
+				$this->redirect('index');
 			}
 			else
 			{
@@ -83,6 +84,6 @@ class Controller_Main extends Controller_Template {
 	public function action_logout()
 	{
 		Auth::instance()->logout();
-		$this->redirect('main/index');
+		$this->redirect('index');
 	}
 } // End Main
