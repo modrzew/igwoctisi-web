@@ -27,7 +27,7 @@ class Controller_Main extends Controller_Template {
 			$post->rule('password', 'not_empty');
 			$post->rule('password2', 'not_empty');
 			$post->rule('email', 'not_empty');
-			$post->rule('password', 'matches', array(':validation', 'password2', 'password'));
+			$post->rule('password2', 'matches', array(':validation', 'password2', 'password'));
 			$post->rule('email', 'email');
 			if($post->check())
 			{
@@ -46,17 +46,22 @@ class Controller_Main extends Controller_Template {
 						'email' => $post['email'],
 					))->save();
 					$user->add('roles', ORM::factory('role', 1));
+					Auth::instance()->login($post['username'], $post['password']);
+					Session::instance()->set('msg', array('success', 'Thanks! You have been automagically signed in.'));
+					$this->redirect('/');
 				}
 				else
 				{
 					$this->template->content->data = $post->data();
 					$this->template->content->errors = $post->errors('');
+					Session::instance()->set('msg', array('error', 'Something went bad while trying to register.'));
 				}
 			}
 			else
 			{
 				$this->template->content->data = $post->data();
 				$this->template->content->errors = $post->errors('');
+				Session::instance()->set('msg', array('error', 'Something went bad while trying to register.'));
 			}
 		}
 	}
@@ -71,11 +76,13 @@ class Controller_Main extends Controller_Template {
 			$post = $this->request->post();
 			if(Auth::instance()->login($post['username'], $post['password']))
 			{
+				Session::instance()->set('msg', array('success', 'Sucessfully logged in.'));
 				$this->redirect('index');
 			}
 			else
 			{
 				$this->template->content->loginFailed = TRUE;
+				Session::instance()->set('msg', array('error', 'Wrong username or password.'));
 			}
 		}
 	}
@@ -84,6 +91,7 @@ class Controller_Main extends Controller_Template {
 	public function action_logout()
 	{
 		Auth::instance()->logout();
+		Session::instance()->set('msg', array('success', 'Sucessfully logged out.'));
 		$this->redirect('index');
 	}
 } // End Main
