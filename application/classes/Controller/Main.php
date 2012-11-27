@@ -94,4 +94,25 @@ class Controller_Main extends Controller_Template {
 		Session::instance()->set('msg', array('success', 'Sucessfully logged out.'));
 		$this->redirect('index');
 	}
+	
+	
+	public function action_ranking()
+	{
+		$this->template->content = View::factory('partials/ranking');
+	}
+
+	
+	
+	public function action_profile()
+	{
+		$this->template->content = 'stub';
+	}
+	
+
+	
+	public function action_game()
+	{
+		$this->template->content = 'stub';
+	}
+	
 } // End Main

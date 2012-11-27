@@ -16,13 +16,15 @@
 		<div class="container">
 			<div class="masthead">
 <?php if(Auth::instance()->logged_in()): ?>
-				<div class="dropdown">
+				<div class="dropdown pull-right">
 					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 						<?= Auth::instance()->get_user()->username ?>
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu pull-right">
-						<li><a href="<?= Url::base() ?>logout">Logout</a></li>
+						<li><a href="<?= Url::base() ?>logout"><i class="icon-user"></i> Profile</a></li>
+						<li class="divider"></li>
+						<li><a href="<?= Url::base() ?>logout"><i class="icon-off"></i> Logout</a></li>
 					</ul>
 				</div>
 <?php else: ?>
