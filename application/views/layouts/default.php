@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>assets/styles/bootstrap.min.css" />
 		<link rel="stylesheet/less" type="text/less" href="<?= Url::base() ?>assets/styles/style.less" />
 		<script type="text/javascript" src="<?= Url::base() ?>assets/js/less-1.3.1.min.js"></script>
+		<script type="text/javascript" src="<?= Url::base() ?>assets/js/highcharts.js"></script>
 		<script type="text/javascript" src="<?= Url::base() ?>assets/js/main.js"></script>
 		<meta charset="utf-8">
 		<title>IGWOCTISI</title>
@@ -22,7 +23,7 @@
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu pull-right">
-						<li><a href="<?= Url::base() ?>logout"><i class="icon-user"></i> Profile</a></li>
+						<li><a href="<?= Url::base() ?>profile"><i class="icon-user"></i> Profile</a></li>
 						<li class="divider"></li>
 						<li><a href="<?= Url::base() ?>logout"><i class="icon-off"></i> Logout</a></li>
 					</ul>
