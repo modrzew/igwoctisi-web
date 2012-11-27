@@ -99,20 +99,35 @@ class Controller_Main extends Controller_Template {
 	public function action_ranking()
 	{
 		$this->template->content = View::factory('partials/ranking');
+		$this->template->content->ranking = ORM::factory('user')->order_by('points', 'DESC')->order_by('username', 'ASC')->find_all();
 	}
 
 	
 	
 	public function action_profile()
 	{
-		$this->template->content = 'stub';
+		$username = $this->request->param('id');
+		if(!$username)
+			throw new HTTP_Exception_500('Empty username');
+		$user = ORM::factory('user')->where('username', '=', $username)->find();
+		if(!$user->loaded())
+			throw new HTTP_Exception_500('Unable to load user');
+		$this->template->content = View::factory('partials/profile');
+		$this->template->content->user = $user;
 	}
 	
 
 	
 	public function action_game()
 	{
-		$this->template->content = 'stub';
+		$gameId = $this->request->param('id');
+		if(!$gameId)
+			throw new HTTP_Exception_500('Empty game ID');
+		$game = ORM::factory('game', $gameId);
+		if(!$game->loaded())
+			throw new HTTP_Exception_500('Unable to load game');
+		$this->template->content = View::factory('partials/game');
+		$this->template->content->game = $game;
 	}
 	
 } // End Main
