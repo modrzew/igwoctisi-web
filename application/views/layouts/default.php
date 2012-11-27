@@ -15,14 +15,29 @@
 	<body>
 		<div class="container">
 			<div class="masthead">
+<?php if(Auth::instance()->logged_in()): ?>
+				<div class="dropdown">
+					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+						<?= Auth::instance()->get_user()->username ?>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu pull-right">
+						<li><a href="<?= Url::base() ?>logout">Logout</a></li>
+					</ul>
+				</div>
+<?php else: ?>
 				<ul class="nav nav-pills pull-right">
-<!-- 					<li class="active"><a href="#">Main</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Contact</a></li> -->
+					<li><a href="<?= Url::base() ?>login">Login</a></li>
+					<li><a href="<?= Url::base() ?>signup">Sign up</a></li>
 				</ul>
+<?php endif; ?>
 				<h3 class="muted">IGWOCTISI</h3>
 			</div>
-			
+
+<?php if($msg = Session::instance()->get_once('msg', FALSE)): ?>
+<p class="lead text-<?= $msg[0] ?>"><?= $msg[1] ?></p>
+<?php endif; ?>
+
 			<?= $content ?>
 
 		</div>

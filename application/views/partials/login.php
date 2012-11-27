@@ -1,7 +1,5 @@
 <h1>Login</h1>
 
-<?php if(isset($loginFailed)) echo '<p class="text-error">Wrong username and/or password.</p>'; ?>
-
 <form class="form-horizontal" method="POST">
 	<div class="control-group">
 		<label class="control-label" for="username">Username</label>
