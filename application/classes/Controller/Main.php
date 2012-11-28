@@ -60,7 +60,7 @@ class Controller_Main extends Controller_Template {
 					{
 						die(Debug::vars($e));
 					}
-					$user->add('roles', ORM::factory('role', 1));
+					$user->add('roles', ORM::factory('Role', 1));
 					Auth::instance()->login($post['username'], $post['password']);
 					Session::instance()->set('msg', array('success', 'Thanks! You have been automagically signed in.'));
 					$this->redirect('/');
