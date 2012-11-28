@@ -13,7 +13,7 @@ class Model_User extends Model_Auth_User {
 		if(!$this->loaded())
 			throw new Kohana_Exception('User object not loaded');
 		
-		$ranking = ORM::factory('user')->order_by('points', 'DESC')->order_by('username', 'ASC')->find_all();
+		$ranking = ORM::factory('User')->order_by('points', 'DESC')->order_by('username', 'ASC')->find_all();
 		$place = 0;
 		$hiddenPlace = 0;
 		$lastPoints = PHP_INT_MAX;
