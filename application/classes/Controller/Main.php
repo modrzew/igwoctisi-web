@@ -32,13 +32,13 @@ class Controller_Main extends Controller_Template {
 			if($post->check())
 			{
 				$valid = TRUE; // Kohana is stupid
-				$user = ORM::factory('user')->where('username', '=', $post['username'])->find();
+				$user = ORM::factory('User')->where('username', '=', $post['username'])->find();
 				if($user->loaded())
 				{
 					$post->error('username', 'this username is taken');
 					$valid = FALSE;
 				}
-				$user = ORM::factory('user')->where('email', '=', $post['email'])->find();
+				$user = ORM::factory('User')->where('email', '=', $post['email'])->find();
 				if($user->loaded())
 				{
 					$post->error('email', 'this e-mail is already in use');
@@ -46,7 +46,7 @@ class Controller_Main extends Controller_Template {
 				}
 				if($valid)
 				{
-					$user = ORM::factory('user')->values(array(
+					$user = ORM::factory('User')->values(array(
 						'username' => $post['username'],
 						'password' => $post['password'],
 						'password_confirm' => $post['password'],
@@ -114,7 +114,7 @@ class Controller_Main extends Controller_Template {
 	public function action_ranking()
 	{
 		$this->template->content = View::factory('partials/ranking');
-		$this->template->content->ranking = ORM::factory('user')->order_by('points', 'DESC')->order_by('username', 'ASC')->find_all();
+		$this->template->content->ranking = ORM::factory('User')->order_by('points', 'DESC')->order_by('username', 'ASC')->find_all();
 	}
 
 	
@@ -124,7 +124,7 @@ class Controller_Main extends Controller_Template {
 		$username = $this->request->param('id');
 		if(!$username)
 			throw new HTTP_Exception_500('Empty username');
-		$user = ORM::factory('user')->where('username', '=', $username)->find();
+		$user = ORM::factory('User')->where('username', '=', $username)->find();
 		if(!$user->loaded())
 			throw new HTTP_Exception_500('Unable to load user');
 		$this->template->content = View::factory('partials/profile');
