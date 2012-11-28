@@ -18,20 +18,21 @@
 			<div class="masthead">
 <?php if(Auth::instance()->logged_in()): ?>
 				<div class="dropdown pull-right">
+					<a class="btn" href="<?= Url::base() ?>ranking">ranking</a>
 					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-						<?= Auth::instance()->get_user()->username ?>
+						<?= $user = Auth::instance()->get_user()->username ?>
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu pull-right">
-						<li><a href="<?= Url::base() ?>profile"><i class="icon-user"></i> Profile</a></li>
+						<li><a href="<?= Url::base() ?>profile/<?= $user ?>"><i class="icon-user"></i> Profile</a></li>
 						<li class="divider"></li>
 						<li><a href="<?= Url::base() ?>logout"><i class="icon-off"></i> Logout</a></li>
 					</ul>
 				</div>
 <?php else: ?>
 				<ul class="nav nav-pills pull-right">
-					<li><a href="<?= Url::base() ?>login">Login</a></li>
-					<li><a href="<?= Url::base() ?>signup">Sign up</a></li>
+					<li><a class="btn" href="<?= Url::base() ?>login">Login</a></li>
+					<li><a class="btn" href="<?= Url::base() ?>signup">Sign up</a></li>
 				</ul>
 <?php endif; ?>
 				<h3 class="muted">IGWOCTISI</h3>

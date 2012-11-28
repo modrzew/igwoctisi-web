@@ -1,8 +1,13 @@
 <h1><?= $user->username ?></h1>
 
-<h3>Last 10 games played</h3>
+<ul>
+	<li>#<?= $user->getRankingPosition() ?> in ranking (<?= $user->points ?> points)</li>
+	<li><?= $user->games->count_all() ?> games played (<?= $user->places->where('place', '=', 1)->count_all() ?> won)</li>
+</ul>
 
+<?php if($user->games->count_all() > 0): ?>
 <div id="profile-chart" class="pull-right"></div>
+<h3>Last 10 games played</h3>
 
 <ul>
 <?php
@@ -29,3 +34,6 @@
 	endforeach;
 ?>
 </ul>
+<?php else: ?>
+<p>This user has yet to play a game.</p>
+<?php endif; ?>
