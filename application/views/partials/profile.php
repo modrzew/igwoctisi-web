@@ -16,7 +16,7 @@
 		$points = $g->places->where('user_id', '=', $user->id)->find()->points;
 		$pointsChart[] = array('date' => $g->date_played, 'points' => $points)
 ?>
-	<li><a href="<?= Url::base().'game/'.$g->id ?>"><?= $g->name ?></a> (<?= ($points < 0) ? '-' : (($points > 0) ? '+' : '') ?><?= $points ?>)</li>
+	<li><a href="<?= URL::base().'game/'.$g->id ?>"><?= $g->name ?></a> (<?= ($points < 0) ? '-' : (($points > 0) ? '+' : '') ?><?= $points ?>)</li>
 <?php endforeach; ?>
 </ul>
 
