@@ -12,6 +12,7 @@ class Model_Game extends ORM {
 			throw new Kohana_Exception('Game object not loaded');
 
 		$czas = $this->time;
+		$return = array();
 		if($czas > 86400)
 		{
 			$return[] = floor($czas / 86400)."d";
