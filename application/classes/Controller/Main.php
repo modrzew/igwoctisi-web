@@ -38,13 +38,28 @@ class Controller_Main extends Controller_Template {
 					$post->error('username', 'this username is taken');
 					$valid = FALSE;
 				}
+				$user = ORM::factory('user')->where('email', '=', $post['email'])->find();
+				if($user->loaded())
+				{
+					$post->error('email', 'this e-mail is already in use');
+					$valid = FALSE;
+				}
 				if($valid)
 				{
 					$user = ORM::factory('user')->values(array(
 						'username' => $post['username'],
 						'password' => $post['password'],
+						'password_confirm' => $post['password'],
 						'email' => $post['email'],
-					))->save();
+					));
+					try
+					{
+						$user->save();
+					}
+					catch (Exception $e)
+					{
+						die(Debug::vars($e));
+					}
 					$user->add('roles', ORM::factory('role', 1));
 					Auth::instance()->login($post['username'], $post['password']);
 					Session::instance()->set('msg', array('success', 'Thanks! You have been automagically signed in.'));
