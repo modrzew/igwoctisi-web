@@ -9,6 +9,6 @@
 
 <ol>
 <?php foreach($game->places->order_by('place', 'ASC')->find_all() as $p): ?>
-	<li><a href="<?= URL::base() ?>profile/<?= $p->user->username ?>"><?= $p->user->username ?></a> (<?= ($p->points < 0) ? '-' : (($p->points > 0) ? '+' : '') ?><?= $p->points ?>)</li>
+	<li><a href="<?= URL::base() ?>profile/<?= $p->user->username ?>"><?= $p->user->username ?></a> <?= ($p->points > 0) ? '+' : '' ?><?= $p->points ?>)</li>
 <?php endforeach; ?>
 </ol>
