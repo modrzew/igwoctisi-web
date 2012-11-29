@@ -138,7 +138,7 @@ class Controller_Main extends Controller_Template {
 		$gameId = $this->request->param('id');
 		if(!$gameId)
 			throw new HTTP_Exception_500('Empty game ID');
-		$game = ORM::factory('Game', $gameId);
+		$game = ORM::factory('Game')->where('id', '=', $gameId)->and_where('status', '=', 2)->find();
 		if(!$game->loaded())
 			throw new HTTP_Exception_500('Unable to load game');
 		$this->template->content = View::factory('partials/game');

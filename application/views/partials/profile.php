@@ -2,17 +2,17 @@
 
 <ul>
 	<li>#<?= $user->getRankingPosition() ?> in ranking (<?= $user->points ?> points)</li>
-	<li><?= $user->games->count_all() ?> games played (<?= $user->places->where('place', '=', 1)->count_all() ?> won)</li>
+	<li><?= $user->games->where('status', '=', 2)->count_all() ?> games played (<?= $user->places->where('place', '=', 1)->count_all() ?> won)</li>
 </ul>
 
-<?php if($user->games->count_all() > 0): ?>
+<?php if($user->games->where('status', '=', 2)->count_all() > 0): ?>
 <div id="profile-chart" class="pull-right"></div>
 <h3>Last 10 games played</h3>
 
 <ul>
 <?php
 	$pointsChart = array();
-	foreach($user->games->order_by('date_played', 'DESC')->limit(10)->find_all() as $g):
+	foreach($user->games->where('status', '=', 2)->order_by('date_played', 'DESC')->limit(10)->find_all() as $g):
 		$points = $g->places->where('user_id', '=', $user->id)->find()->points;
 		$pointsChart[] = array('date' => $g->date_played, 'points' => $points)
 ?>
