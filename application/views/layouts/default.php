@@ -35,14 +35,18 @@
 					<li><a class="btn" href="<?= URL::base() ?>signup">Sign up</a></li>
 				</ul>
 <?php endif; ?>
-				<h3 class="muted">IGWOCTISI</h3>
+				<a href="<?= URL::base() ?>" id="logo">
+					<img src="<?= URL::base() ?>assets/img/logo.png" alt="logo" />
+				</a>
 			</div>
 
+			<div class="content">
 <?php if($msg = Session::instance()->get_once('msg', FALSE)): ?>
 <p class="lead text-<?= $msg[0] ?>"><?= $msg[1] ?></p>
 <?php endif; ?>
 
-			<?= $content ?>
+				<?= $content ?>
+			</div>
 
 		</div>
 	</body>

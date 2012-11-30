@@ -1,5 +1,5 @@
 <div class="jumbotron">
 	<h1>You're logged in!</h1>
-	<p class="lead">But this is 1.0, you can do nothing.</p>
-	<a class="btn btn-danger btn-large" href="<?= URL::base() ?>logout">Log me out :(</a>
+	<a class="btn btn-success btn-large" href="<?= URL::base() ?>profile/<?= Auth::instance()->get_user()->username ?>">View your profile</a>
+	<a class="btn btn-success btn-large" href="<?= URL::base() ?>ranking">View ranking</a>
 </div>
