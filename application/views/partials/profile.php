@@ -37,3 +37,4 @@
 <?php else: ?>
 <p>This user has yet to play a game.</p>
 <?php endif; ?>
+<div class="clear"><!-- nothing --></div>
