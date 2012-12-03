@@ -91,7 +91,7 @@ class Controller_Main extends Controller_Template {
 			$post = $this->request->post();
 			if(Auth::instance()->login($post['username'], $post['password']))
 			{
-				Session::instance()->set('msg', array('success', 'Sucessfully logged in.'));
+				Session::instance()->set('msg', array('success', 'Successfully logged in.'));
 				$this->redirect('index');
 			}
 			else
