@@ -106,7 +106,7 @@ class Controller_Main extends Controller_Template {
 	public function action_logout()
 	{
 		Auth::instance()->logout();
-		Session::instance()->set('msg', array('success', 'Sucessfully logged out.'));
+		Session::instance()->set('msg', array('success', 'Successfully logged out.'));
 		$this->redirect('index');
 	}
 	
